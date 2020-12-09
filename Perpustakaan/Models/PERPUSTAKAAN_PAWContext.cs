@@ -24,15 +24,6 @@ namespace Perpustakaan.Models
         public virtual DbSet<Pengembalian> Pengembalian { get; set; }
         public virtual DbSet<Rak> Rak { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-5L26KM2;Database=PERPUSTAKAAN_PAW;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Buku>(entity =>
