@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Perpustakaan.Models
 {
@@ -11,8 +12,11 @@ namespace Perpustakaan.Models
         }
 
         public int NoPeminjaman { get; set; }
+        [Required(ErrorMessage = "Tanggal Peminjaman tidak boleh kosong!!")]
         public DateTime? TglPeminjaman { get; set; }
+        [Required(ErrorMessage = "No Buku tidak boleh kosong!!")]
         public int? NoBuku { get; set; }
+        [Required(ErrorMessage = "No Anggota tidak boleh kosong!!")]
         public int? NoAnggota { get; set; }
 
         public Mahasiswa NoAnggotaNavigation { get; set; }
