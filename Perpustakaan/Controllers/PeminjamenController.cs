@@ -48,8 +48,8 @@ namespace Perpustakaan.Controllers
         // GET: Peminjamen/Create
         public IActionResult Create()
         {
-            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "NoAnggota");
-            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "NoBuku");
+            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "Nama");
+            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "JudulBuku");
             return View();
         }
 
@@ -66,8 +66,8 @@ namespace Perpustakaan.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "NoAnggota", peminjaman.NoAnggota);
-            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "NoBuku", peminjaman.NoBuku);
+            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "Nama", peminjaman.NoAnggota);
+            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "JudulBuku", peminjaman.NoBuku);
             return View(peminjaman);
         }
 
@@ -84,8 +84,8 @@ namespace Perpustakaan.Controllers
             {
                 return NotFound();
             }
-            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "NoAnggota", peminjaman.NoAnggota);
-            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "NoBuku", peminjaman.NoBuku);
+            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "Nama", peminjaman.NoAnggota);
+            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "JudulBuku", peminjaman.NoBuku);
             return View(peminjaman);
         }
 
@@ -121,8 +121,8 @@ namespace Perpustakaan.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "NoAnggota", peminjaman.NoAnggota);
-            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "NoBuku", peminjaman.NoBuku);
+            ViewData["NoAnggota"] = new SelectList(_context.Mahasiswa, "NoAnggota", "Nama", peminjaman.NoAnggota);
+            ViewData["NoBuku"] = new SelectList(_context.Buku, "NoBuku", "JudulBuku", peminjaman.NoBuku);
             return View(peminjaman);
         }
 

@@ -48,7 +48,7 @@ namespace Perpustakaan.Controllers
         // GET: Pengembalians/Create
         public IActionResult Create()
         {
-            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NoKondisi");
+            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NamaKondisi");
             ViewData["NoPeminjaman"] = new SelectList(_context.Peminjaman, "NoPeminjaman", "NoPeminjaman");
             return View();
         }
@@ -66,7 +66,7 @@ namespace Perpustakaan.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NoKondisi", pengembalian.NoKondisi);
+            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NamaKondisi", pengembalian.NoKondisi);
             ViewData["NoPeminjaman"] = new SelectList(_context.Peminjaman, "NoPeminjaman", "NoPeminjaman", pengembalian.NoPeminjaman);
             return View(pengembalian);
         }
@@ -84,7 +84,7 @@ namespace Perpustakaan.Controllers
             {
                 return NotFound();
             }
-            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NoKondisi", pengembalian.NoKondisi);
+            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NamaKondisi", pengembalian.NoKondisi);
             ViewData["NoPeminjaman"] = new SelectList(_context.Peminjaman, "NoPeminjaman", "NoPeminjaman", pengembalian.NoPeminjaman);
             return View(pengembalian);
         }
@@ -121,7 +121,7 @@ namespace Perpustakaan.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NoKondisi", pengembalian.NoKondisi);
+            ViewData["NoKondisi"] = new SelectList(_context.KondisiBuku, "NoKondisi", "NamaKondisi", pengembalian.NoKondisi);
             ViewData["NoPeminjaman"] = new SelectList(_context.Peminjaman, "NoPeminjaman", "NoPeminjaman", pengembalian.NoPeminjaman);
             return View(pengembalian);
         }

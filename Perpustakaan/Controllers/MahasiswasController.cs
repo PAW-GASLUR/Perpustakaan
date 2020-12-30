@@ -47,7 +47,7 @@ namespace Perpustakaan.Controllers
         // GET: Mahasiswas/Create
         public IActionResult Create()
         {
-            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NoGender");
+            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NamaGender");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace Perpustakaan.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NoGender", mahasiswa.NoGender);
+            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NamaGender", mahasiswa.NoGender);
             return View(mahasiswa);
         }
 
@@ -81,7 +81,7 @@ namespace Perpustakaan.Controllers
             {
                 return NotFound();
             }
-            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NoGender", mahasiswa.NoGender);
+            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NamaGender", mahasiswa.NoGender);
             return View(mahasiswa);
         }
 
@@ -117,7 +117,7 @@ namespace Perpustakaan.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NoGender", mahasiswa.NoGender);
+            ViewData["NoGender"] = new SelectList(_context.Gender, "NoGender", "NamaGender", mahasiswa.NoGender);
             return View(mahasiswa);
         }
 

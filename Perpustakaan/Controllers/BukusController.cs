@@ -48,8 +48,8 @@ namespace Perpustakaan.Controllers
         // GET: Bukus/Create
         public IActionResult Create()
         {
-            ViewData["NoKatalog"] = new SelectList(_context.KatalogBuku, "NoKatalog", "NoKatalog");
-            ViewData["NoRak"] = new SelectList(_context.Rak, "NoRak", "NoRak");
+            ViewData["NoKatalog"] = new SelectList(_context.KatalogBuku, "NoKatalog", "JenisKatalog");
+            ViewData["NoRak"] = new SelectList(_context.Rak, "NoRak", "NamaRak");
             return View();
         }
 
@@ -84,8 +84,8 @@ namespace Perpustakaan.Controllers
             {
                 return NotFound();
             }
-            ViewData["NoKatalog"] = new SelectList(_context.KatalogBuku, "NoKatalog", "NoKatalog", buku.NoKatalog);
-            ViewData["NoRak"] = new SelectList(_context.Rak, "NoRak", "NoRak", buku.NoRak);
+            ViewData["NoKatalog"] = new SelectList(_context.KatalogBuku, "NoKatalog", "JenisKatalog", buku.NoKatalog);
+            ViewData["NoRak"] = new SelectList(_context.Rak, "NoRak", "NamaRak", buku.NoRak);
             return View(buku);
         }
 
@@ -121,8 +121,8 @@ namespace Perpustakaan.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["NoKatalog"] = new SelectList(_context.KatalogBuku, "NoKatalog", "NoKatalog", buku.NoKatalog);
-            ViewData["NoRak"] = new SelectList(_context.Rak, "NoRak", "NoRak", buku.NoRak);
+            ViewData["NoKatalog"] = new SelectList(_context.KatalogBuku, "NoKatalog", "JenisKatalog", buku.NoKatalog);
+            ViewData["NoRak"] = new SelectList(_context.Rak, "NoRak", "NamaRak", buku.NoRak);
             return View(buku);
         }
 
