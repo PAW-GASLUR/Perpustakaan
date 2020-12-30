@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Buku</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -22,10 +22,10 @@
                 @Html.DisplayNameFor(model => model.Penerbit)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoKatalogNavigation)
+                @Html.DisplayNameFor(model => model.NoKatalogNavigation.JenisKatalog)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoRakNavigation)
+                @Html.DisplayNameFor(model => model.NoRakNavigation.NamaRak)
             </th>
             <th></th>
         </tr>
@@ -43,10 +43,10 @@
                 @Html.DisplayFor(modelItem => item.Penerbit)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NoKatalogNavigation.NoKatalog)
+                @Html.DisplayFor(modelItem => item.NoKatalogNavigation.JenisKatalog)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NoRakNavigation.NoRak)
+                @Html.DisplayFor(modelItem => item.NoRakNavigation.NamaRak)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.NoBuku">Edit</a> |

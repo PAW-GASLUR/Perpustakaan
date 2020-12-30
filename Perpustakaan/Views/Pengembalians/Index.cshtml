@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Pengembalian</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -19,10 +19,10 @@
                 @Html.DisplayNameFor(model => model.Denda)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoKondisiNavigation)
+                @Html.DisplayNameFor(model => model.NoKondisiNavigation.NamaKondisi)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoPeminjamanNavigation)
+                @Html.DisplayNameFor(model => model.NoPeminjamanNavigation.NoPeminjaman)
             </th>
             <th></th>
         </tr>
@@ -37,7 +37,7 @@
                 @Html.DisplayFor(modelItem => item.Denda)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NoKondisiNavigation.NoKondisi)
+                @Html.DisplayFor(modelItem => item.NoKondisiNavigation.NamaKondisi)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NoPeminjamanNavigation.NoPeminjaman)

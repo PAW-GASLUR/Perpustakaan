@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Peminjaman</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -16,10 +16,10 @@
                 @Html.DisplayNameFor(model => model.TglPeminjaman)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoAnggotaNavigation)
+                @Html.DisplayNameFor(model => model.NoAnggotaNavigation.Nama)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoBukuNavigation)
+                @Html.DisplayNameFor(model => model.NoBukuNavigation.JudulBuku)
             </th>
             <th></th>
         </tr>
@@ -31,10 +31,10 @@
                 @Html.DisplayFor(modelItem => item.TglPeminjaman)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NoAnggotaNavigation.NoAnggota)
+                @Html.DisplayFor(modelItem => item.NoAnggotaNavigation.Nama)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NoBukuNavigation.NoBuku)
+                @Html.DisplayFor(modelItem => item.NoBukuNavigation.JudulBuku)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.NoPeminjaman">Edit</a> |
