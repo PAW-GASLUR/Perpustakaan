@@ -19,10 +19,36 @@ namespace Perpustakaan.Controllers
         }
 
         // GET: Mahasiswas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ktsd, string searchString)
         {
-            var pERPUSTAKAAN_PAWContext = _context.Mahasiswa.Include(m => m.NoGenderNavigation);
-            return View(await pERPUSTAKAAN_PAWContext.ToListAsync());
+            //buat list menyimpan ketersediaan
+            var ktsdList = new List<string>();
+            //Query mengambil data
+            var ktsdQuery = from d in _context.Mahasiswa orderby d.Nama select d.Nama;
+
+            ktsdList.AddRange(ktsdQuery.Distinct());
+
+            //untuk menampilkan di view
+            ViewBag.ktsd = new SelectList(ktsdList);
+
+            //panggil db context
+            var menu = from m in _context.Mahasiswa.Include(k => k.NoGenderNavigation) select m;
+
+            //untuk memilih dropdownlist ketersediaan
+            if (!string.IsNullOrEmpty(ktsd))
+            {
+                menu = menu.Where(x => x.Nama == ktsd);
+            }
+
+            //untuk search data
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                menu = menu.Where(s => s.Nim.Contains(searchString) || s.Nama.Contains(searchString));
+            }
+
+            return View(await menu.ToListAsync());
+            //var pERPUSTAKAAN_PAWContext = _context.Mahasiswa.Include(m => m.NoGenderNavigation);
+            //return View(await pERPUSTAKAAN_PAWContext.ToListAsync());
         }
 
         // GET: Mahasiswas/Details/5

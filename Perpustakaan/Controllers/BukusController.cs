@@ -19,10 +19,35 @@ namespace Perpustakaan.Controllers
         }
 
         // GET: Bukus
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ktsd, string searchString)
         {
-            var pERPUSTAKAAN_PAWContext = _context.Buku.Include(b => b.NoKatalogNavigation).Include(b => b.NoRakNavigation);
-            return View(await pERPUSTAKAAN_PAWContext.ToListAsync());
+            //buat list menyimpan ketersediaan
+            var ktsdList = new List<string>();
+            //Query mengambil data
+            var ktsdQuery = from d in _context.Buku orderby d.JudulBuku select d.JudulBuku;
+
+            ktsdList.AddRange(ktsdQuery.Distinct());
+
+            //untuk menampilkan di view
+            ViewBag.ktsd = new SelectList(ktsdList);
+
+            //panggil db context
+            var menu = from m in _context.Buku.Include(k => k.NoKatalogNavigation).Include(k => k.NoRakNavigation) select m;
+
+            //untuk memilih dropdownlist ketersediaan
+            if (!string.IsNullOrEmpty(ktsd))
+            {
+                menu = menu.Where(x => x.JudulBuku == ktsd);
+            }
+
+            //untuk search data
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                menu = menu.Where(s => s.JudulBuku.Contains(searchString) || s.Pengarang.Contains(searchString));
+            }
+            //var pERPUSTAKAAN_PAWContext = _context.Buku.Include(b => b.NoKatalogNavigation).Include(b => b.NoRakNavigation);
+            //return View(await pERPUSTAKAAN_PAWContext.ToListAsync());
+            return View(await menu.ToListAsync());
         }
 
         // GET: Bukus/Details/5

@@ -19,10 +19,36 @@ namespace Perpustakaan.Controllers
         }
 
         // GET: Peminjamen
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ktsd, string searchString)
         {
-            var pERPUSTAKAAN_PAWContext = _context.Peminjaman.Include(p => p.NoAnggotaNavigation).Include(p => p.NoBukuNavigation);
-            return View(await pERPUSTAKAAN_PAWContext.ToListAsync());
+            //buat list menyimpan ketersediaan
+            var ktsdList = new List<string>();
+            //Query mengambil data
+            var ktsdQuery = from d in _context.Peminjaman orderby d.NoAnggotaNavigation.Nama select d.NoAnggotaNavigation.Nama;
+
+            ktsdList.AddRange(ktsdQuery.Distinct());
+
+            //untuk menampilkan di view
+            ViewBag.ktsd = new SelectList(ktsdList);
+
+            //panggil db context
+            var menu = from m in _context.Peminjaman.Include(k => k.NoBukuNavigation).Include(k => k.NoAnggotaNavigation) select m;
+
+            //untuk memilih dropdownlist ketersediaan
+            if (!string.IsNullOrEmpty(ktsd))
+            {
+                menu = menu.Where(x => x.NoAnggotaNavigation.Nama == ktsd);
+            }
+
+            //untuk search data
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                menu = menu.Where(s => s.TglPeminjaman.ToString().Contains(searchString) || s.NoAnggotaNavigation.Nama.Contains(searchString) || s.NoBukuNavigation.JudulBuku.Contains(searchString));
+            }
+
+            return View(await menu.ToListAsync());
+            //var pERPUSTAKAAN_PAWContext = _context.Peminjaman.Include(p => p.NoAnggotaNavigation).Include(p => p.NoBukuNavigation);
+            //return View(await pERPUSTAKAAN_PAWContext.ToListAsync());
         }
 
         // GET: Peminjamen/Details/5
